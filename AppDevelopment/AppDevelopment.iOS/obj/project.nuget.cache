@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "UZQHlGZyYcjIhcHRWsesPI4m3Oh07Zfi5lgmN6Lm6wQI10frtFeehcoyb6L3DvR/CeRy98gpXbZRHhvber+PKQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\meesh\\source\\repos\\AppDevelopment\\AppDevelopment\\AppDevelopment.iOS\\AppDevelopment.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\meesh\\.nuget\\packages\\fody\\6.6.3\\fody.6.6.3.nupkg.sha512",
+    "C:\\Users\\meesh\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\meesh\\.nuget\\packages\\propertychanged.fody\\4.0.3\\propertychanged.fody.4.0.3.nupkg.sha512",
+    "C:\\Users\\meesh\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
+  ],
+  "logs": []
+}

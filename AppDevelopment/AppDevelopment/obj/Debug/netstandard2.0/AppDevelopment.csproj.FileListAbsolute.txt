@@ -1,0 +1,15 @@
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\bin\Debug\netstandard2.0\AppDevelopment.deps.json
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\bin\Debug\netstandard2.0\AppDevelopment.dll
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\bin\Debug\netstandard2.0\ref\AppDevelopment.dll
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\bin\Debug\netstandard2.0\AppDevelopment.pdb
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.csproj.AssemblyReference.cache
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.AssemblyInfoInputs.cache
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.AssemblyInfo.cs
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.csproj.CoreCompileInputs.cache
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.dll
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\ref\AppDevelopment.dll
+C:\Users\meesh\source\repos\AppDevelopment\AppDevelopment\AppDevelopment\obj\Debug\netstandard2.0\AppDevelopment.pdb

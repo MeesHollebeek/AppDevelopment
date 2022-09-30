@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppDevelopment.nutteloos">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#00FBFF" Padding="20" CornerRadius="0">
+                <Label Text="Mark Rutte" HorizontalTextAlignment="Center" TextColor="White" FontSize="Title">
+
+                </Label>
+                
+                </Frame>
+            
+            <Image
+                x:Name="rutten"
+                Source="rutte2.png" />
+            <StackLayout Padding="0">
+                <Label
+                TextColor="Green"
+                Text="Mark Rutte status:"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                 />
+                <Label Text="{Binding HungerText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+                <Label Text="{Binding SpinText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+
+            </StackLayout>
+            <Button Text="Feed"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked= "Feed" />
+
+            <Button Text="playtime"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked= "spin" />
+            <Button Text="bed"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked= "sleep" />
+            <Button Text="drink"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked= "thirst" />
+
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>
+    
+    

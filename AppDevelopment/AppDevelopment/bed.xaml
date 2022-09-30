@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppDevelopment.bed">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image
+                x:Name="rutten"
+                Source="rutte2.png" />
+
+            <Label
+                TextColor="Green"
+                Text="Mark Rutte status:"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                 />
+            <Label Text="{Binding SleepText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+
+            <Button Text="goodnight kisses"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked= "sleepy" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
