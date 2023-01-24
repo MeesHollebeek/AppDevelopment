@@ -5,6 +5,7 @@ using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Tamagotchi;
 
 namespace AppDevelopment
 {

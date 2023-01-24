@@ -4,88 +4,123 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using Tamagotchi;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppDevelopment
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class food : ContentPage
     {
-
-       
-        public Creature MyCreature { get; set; }
-        public float feed { get; set; } = .0f;
-
-        public string HungerText => feed switch
+        public Creature Markie { get; set; } = new Creature
         {
-            >= 1.0f => "plenty of food!",
-            >= .5f => "Nomming away.",
-            > .0f => "Food is  running low...",
-            .0f => "Nothing left",
-            _ => throw new Exception("impossible")
-
         };
+        public Creature MyCreature { get; set; }
 
-    
+        public float hong { get; set; } = .0f;
+
+
+
+        public float Status => hong;
+
+
+
+
+
+
 
         public food()
         {
+            hong = Markie.Hunger;
+
+            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
+            creatureDataStore.UpdateItem(Markie);
+
             var timer = new Timer();
             timer.Interval = 3000.0;
             timer.AutoReset = true;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
-            feed = Markie.Hunger;
+          
 
             BindingContext = this;
 
             InitializeComponent();
 
-          
-
-            Console.WriteLine(Markie.Hunger);
         }
+
+
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+           
+
             Device.BeginInvokeOnMainThread(() =>
             {
-                Markie.Hunger -= 0.1f;
-                var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
-                creatureDataStore.UpdateItem(Markie);
+                hong = Markie.Hunger;
+                // Markie.Hunger -= 0.1f;
 
             });
 
         }
 
-        public Creature Markie { get; set; } = new Creature
-        {
-            Name = "mark",
-
-            Hunger = 0.5f,
-
-            Thirst = 0.5f,
-
-            Boredom = 0.5f
-        };
+       
 
 
-
-        async void Feed(object sender, EventArgs args)
+        private async void Feed(object sender, EventArgs e)
         {
 
-
-            Markie.Hunger = .0f;
+            if (Markie.Hunger <= 1)
+            {
+                Markie.Hunger += 0.1f;
+               
+            }            
+            Console.WriteLine(Markie.Hunger);
+            hong = Markie.Hunger;
             var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
-            creatureDataStore.UpdateItem(Markie);
+            await creatureDataStore.UpdateItem(Markie);
+
+
 
             await rutten.TranslateTo(0, 5);
             await rutten.TranslateTo(0, 0);
             await rutten.TranslateTo(0, 5);
             rutten.TranslateTo(0, 0);
+         
+            
 
 
         }
+        
+        public string HungerText => Status switch
+        {
+            >= 1.0f => "plenty of food!",
+            >= .5f => "Nomming away.",
+            >= .1f => "Very hungry.",
+            > .0f => "Loading food status...",
+            .0f => "Loading food stats...",
+            _ => throw new Exception("impossible")
+        };
+
+        protected override async void OnAppearing()
+        {
+            hong = Markie.Hunger;
+            base.OnAppearing();
+
+            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
+            Markie = await creatureDataStore.ReadItem();
+            if (Markie == null)
+            {
+                Markie = new Creature { Name = "Markie" };
+                await creatureDataStore.CreateItem(Markie);
+            }
+
+           // await creatureDataStore.UpdateItem(Markie);
+        }
+
+
+
     }
 }

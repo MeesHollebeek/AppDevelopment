@@ -3,6 +3,7 @@ using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using Tamagotchi;
 
 namespace AppDevelopment
 {
