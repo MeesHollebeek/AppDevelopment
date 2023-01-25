@@ -18,38 +18,29 @@ namespace AppDevelopment
         };
 
         public Creature MyCreature { get; set; }
-        public float Status => Markie.Thirst;
+        public float drank { get; set; } = .0f;
+
+
+
+        public float Status => drank;
 
         public string ThirstText => Status switch
         {
-            >= 1.0f => "plenty of water!",
-            >= .5f => "drinking away.",
-            > .0f => "water is  running low...",
-            .0f => "Nothing left",
+            >= 1.0f => "Water Bucket full",
+            >= .5f => "Drinking away.",
+            >= .3f => "Getting thisty.",
+            >= .1f => "Very thirsty.",
+            > .0f => "Loading Thirst status...",
+            .0f => "Loading Thirst stats...",
             _ => throw new Exception("impossible")
 
         };
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
-            Markie = await creatureDataStore.ReadItem();
-            if (Markie == null)
-            {
-                Markie = new Creature { Name = "Markie" };
-                await creatureDataStore.CreateItem(Markie);
-            }
-
-            Markie.Name = "mark";
-            // Markie.Hunger;
-            await creatureDataStore.UpdateItem(Markie);
-        }
         public drink()
         {
+            drank = Markie.Thirst;
+
             var timer = new Timer();
-            timer.Interval = 3000.0;
+            timer.Interval = 30.0;
             timer.AutoReset = true;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
@@ -64,16 +55,7 @@ namespace AppDevelopment
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                 var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
-                 creatureDataStore.UpdateItem(Markie);
-                if (Markie.Thirst > 0)
-                {
-                    Markie.Thirst = Markie.Thirst - .1f;
-                }
-                if (Markie.Thirst <= 0)
-                {
-                    Markie.Thirst = 0;
-                }
+                drank = Markie.Thirst;
 
             });
 
@@ -81,15 +63,16 @@ namespace AppDevelopment
         }
         async void thirsty(object sender, EventArgs args)
         {
+            if (Markie.Thirst <= 1)
+            {
+                Markie.Thirst += 0.1f;
+
+            }
+            drank = Markie.Thirst;
             var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
             await creatureDataStore.UpdateItem(Markie);
 
-            if (Markie.Thirst >= 0 && Markie.Thirst < 1.2)
-            {
-                Markie.Thirst = Markie.Thirst + .1f;
-            }
 
-      
 
             await rutten.TranslateTo(0, 5);
             await rutten.TranslateTo(0, 0);
@@ -98,6 +81,18 @@ namespace AppDevelopment
 
 
         }
- 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
+            Markie = await creatureDataStore.ReadItem();
+            if (Markie == null)
+            {
+                Markie = new Creature { Name = "Markie" };
+                await creatureDataStore.CreateItem(Markie);
+            }
+            await creatureDataStore.UpdateItem(Markie);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace AppDevelopment
         public Creature Markie { get; set; } = new Creature
         {
         };
+       
         public Creature MyCreature { get; set; }
 
         public float hong { get; set; } = .0f;
@@ -24,12 +25,6 @@ namespace AppDevelopment
 
 
         public float Status => hong;
-
-
-
-
-
-
 
         public food()
         {
@@ -39,7 +34,7 @@ namespace AppDevelopment
             creatureDataStore.UpdateItem(Markie);
 
             var timer = new Timer();
-            timer.Interval = 3000.0;
+            timer.Interval = 30.0;
             timer.AutoReset = true;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
@@ -60,7 +55,6 @@ namespace AppDevelopment
             Device.BeginInvokeOnMainThread(() =>
             {
                 hong = Markie.Hunger;
-                // Markie.Hunger -= 0.1f;
 
             });
 
@@ -96,8 +90,9 @@ namespace AppDevelopment
         
         public string HungerText => Status switch
         {
-            >= 1.0f => "plenty of food!",
+            >= 1.0f => "Food bucket full",
             >= .5f => "Nomming away.",
+            >= .3f => "Getting hungry.",
             >= .1f => "Very hungry.",
             > .0f => "Loading food status...",
             .0f => "Loading food stats...",
@@ -115,9 +110,9 @@ namespace AppDevelopment
             {
                 Markie = new Creature { Name = "Markie" };
                 await creatureDataStore.CreateItem(Markie);
+                await creatureDataStore.UpdateItem(Markie);
             }
 
-           // await creatureDataStore.UpdateItem(Markie);
         }
 
 

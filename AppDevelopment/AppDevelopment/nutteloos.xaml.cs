@@ -14,23 +14,53 @@ namespace AppDevelopment
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class nutteloos : ContentPage
     {
+        public float slaap { get; set; } = .0f;
 
+        public string SleepText => slaap switch
+        {
+            >= 1.0f => "plenty of sleep!",
+            >= .5f => "good night of sleep.",
+            > .0f => "getting tired.",
+            .0f => "falling asleep on the ground.",
+            _ => throw new Exception("impossible")
+
+        };
 
         public Creature Markie { get; set; } = new Creature
         {
 
         };
-
-
-
         public Creature MyCreature { get; set; }
 
-        public float hong { get; set; } = .0f;
-        public float Status => hong;
+        public float hong { get; set; }        
+        public float happy { get; set; } 
+        public float drank { get; set; }
+        public string ThirstText => drank switch
+        {
+            >= 1.0f => "Water Bucket full.",
+            >= .5f => "Drinking away.",
+            >= .3f => "Getting thisty.",
+            >= .1f => "Very thirsty.",
+            > .0f => "Loading Thirst status...",
+            .0f => "Loading Thirst stats...",
+            _ => throw new Exception("impossible")
+
+        };
+        public string SpinText => happy switch
+        {
+            >= 1.0f => "Full of happynes.",
+            >= .5f => "Happy.",
+            >= .3f => "Nutral.",
+            >= .1f => "Bored.",
+            > .0f => "Loading Boredom status...",
+            .0f => "Loading Boredom stats...",
+            _ => throw new Exception("impossible")
+        };
         public string HungerText => hong switch
         {
-            >= 1.0f => "plenty of food!",
+            >= 1.0f => "Food bucket full",
             >= .5f => "Nomming away.",
+            >= .3f => "Getting hungry.",
             >= .1f => "Very hungry.",
             > .0f => "Loading food status...",
             .0f => "Loading food stats...",
@@ -38,20 +68,7 @@ namespace AppDevelopment
 
         };
 
-        public float happy { get; set; } = .0f;
 
-     //   public string SpinText => happy switch
-      //  {
-      //      >= 1.0f => "Happy",
-       //     >= .5f => "Fine",
-       //     > .0f => "Bored",
-       //     .0f => "Angry",
-       //     _ => throw new Exception("impossible")
-      //  };
-
-
-        
-       
 
         public nutteloos()
         {
@@ -59,7 +76,7 @@ namespace AppDevelopment
             creatureDataStore.UpdateItem(Markie);
 
             var timer = new Timer();
-            timer.Interval = 3000.0;
+            timer.Interval = 30.0;
             timer.AutoReset = true;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
@@ -73,15 +90,55 @@ namespace AppDevelopment
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+
             Device.BeginInvokeOnMainThread(() =>
             {
-                if(Markie.Hunger > 0.09)
+                if(Markie.Hunger > 0.11)
                 {
-                    Markie.Hunger -= 0.05f;
+                    Markie.Hunger -= 0.0005f;
                     Console.WriteLine(Markie.Hunger);
                     hong = Markie.Hunger;
                 }
-             
+                if (Markie.Hunger < 0.1)
+                {
+                    Markie.Hunger = 0.1f;
+                    hong = Markie.Hunger;
+                }
+
+                if (Markie.Thirst > 0.11)
+                {
+                    Markie.Thirst -= 0.0005f;
+                    
+                    drank = Markie.Thirst;
+                }
+                if (Markie.Thirst < 0.1)
+                {
+                    Markie.Thirst = 0.1f;
+                    drank = Markie.Thirst;
+                }
+
+                if (Markie.Boredom > 0.11)
+                {
+                    Markie.Boredom -= 0.0005f;
+
+                    happy = Markie.Boredom;
+                }
+                if (Markie.Boredom < 0.1)
+                {
+                    Markie.Boredom = 0.1f;
+                    happy = Markie.Boredom;
+                }
+                if (Markie.Tired > 0.11)
+                {
+                    Markie.Tired -= 0.00005f;
+
+                    slaap = Markie.Tired;
+                }
+                if (Markie.Tired < 0.1)
+                {
+                    Markie.Tired = 0.1f;
+                    slaap = Markie.Tired;
+                }
             });
             
         }
@@ -128,10 +185,6 @@ namespace AppDevelopment
                 Markie = new Creature { Name = "Markie" };
                 await creatureDataStore.CreateItem(Markie);
             }
-
-            // await creatureDataStore.UpdateItem(Markie);
-
-            Console.WriteLine(Markie.Hunger);
         }
     }
 }

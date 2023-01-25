@@ -34,7 +34,8 @@ namespace AppDevelopment
             var sleepTime = Preferences.Get("SleepTime", DateTime.UtcNow);
             var timePassed = DateTime.UtcNow - sleepTime;
 
-           // timePassed.TotalSeconds;
+    
         }
+        
     }
 }

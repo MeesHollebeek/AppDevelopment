@@ -14,34 +14,43 @@
             <Image
                 x:Name="rutten"
                 Source="rutte2.png" />
-            <StackLayout Padding="0">
-                <Label
+            <Label
                 TextColor="Green"
                 Text="Mark Rutte status:"
-                VerticalOptions="CenterAndExpand"
+                VerticalOptions="Center"
                 HorizontalOptions="Center"
                  />
-                <Label Text="{Binding HungerText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
-                <Label Text="{Binding SpinText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+            <Grid ColumnDefinitions="1, 1*, Auto, 80">
+                <Label Grid.Column="3" Text="{Binding SleepText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+                <Label  Grid.Column="4" Text="{Binding HungerText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+                <Label Grid.Column="1" Text="{Binding SpinText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
+                <Label Grid.Column="2" Text="{Binding ThirstText, Mode=OneWay}" FontSize="24"  HorizontalOptions="Center"  TextColor="Green"/>
 
-            </StackLayout>
-            <Button Text="Feed"
+            </Grid>
+
+            <Grid Padding="0">
+                <Button Grid.Column="3"
+                Text="Feed"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Clicked= "Feed" />
 
-            <Button Text="playtime"
+            <Button 
+                Text="playtime"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Clicked= "spin" />
-            <Button Text="bed"
+                <Button Grid.Column="2"
+                Text="bed"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Clicked= "sleep" />
-            <Button Text="drink"
+            <Button Grid.Column="1"
+                Text="drink"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Clicked= "thirst" />
+            </Grid>
 
 
         </StackLayout>

@@ -17,12 +17,14 @@ namespace Tamagotchi
 		public string Name { get; set; }
 		public float Thirst { get; set; } 
 		public float Boredom { get; set; } 
-		public float Hunger { get; set; } 
+		public float Hunger { get; set; }
+		public float Tired { get; set; }
 		public Creature()
 		{
-			Hunger = 0;
-			Thirst = 0;
-			Boredom = 0;
+			Hunger = 0.0f;
+			Thirst = 0.0f;
+			Boredom = 0.0f;
+			Tired = 1.0f;
 		}
 	
 		public void LowerStats()

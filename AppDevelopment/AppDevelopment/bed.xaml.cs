@@ -13,6 +13,9 @@ namespace AppDevelopment
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class bed : ContentPage
     {
+        public Creature Markie { get; set; } = new Creature
+        {
+        };
         public Creature MyCreature { get; set; }
         public float sleep { get; set; } = .0f;
 
@@ -29,21 +32,12 @@ namespace AppDevelopment
 
         public bed()
         {
+            sleep = Markie.Tired;
             var timer = new Timer();
             timer.Interval = 3000.0;
             timer.AutoReset = true;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
-
-
-            //  MyCreature = new Creature
-            //  {
-            //     Name = "Henk",
-
-            //  };
-
-            //  var datastore = new CreatureDatastore();
-            //  datastore.CreateEntry(MyEntry);
 
             BindingContext = this;
 
@@ -53,15 +47,8 @@ namespace AppDevelopment
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (sleep > 0)
-                {
-                    sleep = sleep - .1f;
-                }
-                if (sleep <= 0)
-                {
-                    sleep = 0;
-                }
 
+                sleep = Markie.Tired;
             });
 
         }
@@ -69,10 +56,15 @@ namespace AppDevelopment
         {
 
 
-            if (sleep >= 0 && sleep < 1.2)
+            if (Markie.Tired <= 1)
             {
-                sleep = sleep + .1f;
+                Markie.Tired += 0.1f;
+
             }
+   
+            sleep = Markie.Tired;
+            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
+            await creatureDataStore.UpdateItem(Markie);
 
             await rutten.RotateXTo(15, 0);
             await rutten.RotateXTo(0, 0);
@@ -80,6 +72,19 @@ namespace AppDevelopment
             await rutten.RotateXTo(0, 0);
 
 
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var creatureDataStore = DependencyService.Get<IDataStore<Creature>>();
+            Markie = await creatureDataStore.ReadItem();
+            if (Markie == null)
+            {
+                Markie = new Creature { Name = "Markie" };
+                await creatureDataStore.CreateItem(Markie);
+            }
+            await creatureDataStore.UpdateItem(Markie);
         }
     }
 }
